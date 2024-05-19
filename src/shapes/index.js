@@ -18,12 +18,25 @@ function getBaseAttackModifiers (level) {
   return level + proficiency + strength + rune
 }
 
+function getBaseAthleticsModifiers (level) {
+  const proficiency = 2
+  let strength = 4
+
+  if (level >= 15) {
+    strength++
+  }
+
+  return level + proficiency + strength
+}
+
+
 export default function listForms (level) {
   const attackModifier = getBaseAttackModifiers(level)
+  const athleticsModifier = getBaseAthleticsModifiers(level)
 
   return [
-    ...scaleAnimalForms(level, attackModifier),
-    ...scaleDinosaurForms(level, attackModifier),
-    scaleDragonForm(level, attackModifier),
+    ...scaleAnimalForms(level, attackModifier, athleticsModifier),
+    ...scaleDinosaurForms(level, attackModifier, athleticsModifier),
+    scaleDragonForm(level, attackModifier, athleticsModifier),
   ]
 }

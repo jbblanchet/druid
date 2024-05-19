@@ -4,3 +4,7 @@ export function getAttackModifier (attackModifier, base) {
   }
   return base
 }
+
+export function getAthleticsModifier (modifier, base) {
+  return modifier > base ? modifier : base
+}

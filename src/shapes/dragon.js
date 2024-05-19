@@ -1,7 +1,7 @@
 import { FORM_DRAGON, SIZE_LARGE, SIZE_HUGE } from "./constants"
-import { getAttackModifier } from "./utils"
+import { getAttackModifier, getAthleticsModifier } from "./utils"
 
-export default function scaleDragonForm (level, attackModifier) {
+export default function scaleDragonForm (level, attackModifier, athleticsModifer) {
   const form = {
     id: 'Dragon',
     type: FORM_DRAGON,
@@ -15,7 +15,7 @@ export default function scaleDragonForm (level, attackModifier) {
       lowLight: true,
       impreciseScent: 60
     },
-    athletics: 23,
+    athletics: getAthleticsModifier(athleticsModifer, 23),
     attackModifier: getAttackModifier(attackModifier, 22),
     damageBonus: 6,
     diceDamage: 20,
@@ -31,7 +31,7 @@ export default function scaleDragonForm (level, attackModifier) {
     form.armorClass = 21 + level
     form.attackModifier = getAttackModifier(attackModifier, 28)
     form.damageBonus = 12
-    form.athletics = 28
+    form.athletics = getAttackModifier(attackModifier, 28)
   }
 
   return form

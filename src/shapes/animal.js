@@ -1,5 +1,5 @@
-import { FORM_ANIMAL, SIZE_LARGE, SIZE_HUGE } from "./constants"
-import { getAttackModifier } from "./utils"
+import { FORM_ANIMAL, SIZE_HUGE } from "./constants"
+import { getAttackModifier, getAthleticsModifier } from "./utils"
 
 const baseAnimalForms = [{
   id: 'Ape',
@@ -18,17 +18,16 @@ const baseAnimalForms = [{
   agileDiceDamage: 5.5,
 }]
 
-function scaleAnimalForm (baseForm, level, attackModifier) {
+function scaleAnimalForm (baseForm, level, attackModifier, athleticsModifer) {
   const form = {
     type: FORM_ANIMAL,
-    size: SIZE_LARGE,
-    armorClass: 18 + level,
-    tempHitPoints: 15,
+    armorClass: 16 + level,
+    tempHitPoints: 5,
     senses: {
       lowLight: true,
       impreciseScent: 30
     },
-    athletics: 18,
+    athletics: getAthleticsModifier(athleticsModifer, 9),
     attackModifier: getAttackModifier(attackModifier, 9),
     damageBonus: 1,
     reach: 5,
@@ -47,11 +46,12 @@ function scaleAnimalForm (baseForm, level, attackModifier) {
       if (form.agileDiceDamage) {
         form.agileDiceDamage *= 2
       }
+      form.athletics = getAthleticsModifier(athleticsModifer, 20)
   }
 
   return form
 }
 
-export default function scaleAnimalForms (level, attackModifier) {
-  return baseAnimalForms.map(form => scaleAnimalForm(form, level, attackModifier))
+export default function scaleAnimalForms (level, attackModifier, athleticsModifer) {
+  return baseAnimalForms.map(form => scaleAnimalForm(form, level, attackModifier, athleticsModifer))
 }

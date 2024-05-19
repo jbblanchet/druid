@@ -1,5 +1,5 @@
 import { FORM_DINOSAUR, SIZE_GARGANTUAN, SIZE_HUGE } from "./constants"
-import { getAttackModifier } from "./utils"
+import { getAttackModifier, getAthleticsModifier } from "./utils"
 
 const baseDinosaurForms = [{
   id: 'Stegosaurus',
@@ -14,16 +14,16 @@ const baseDinosaurForms = [{
   agileDiceDamage: 5.5,
 }]
 
-function scaleDinosaurForm (baseForm, level, attackModifier) {
+function scaleDinosaurForm (baseForm, level, attackModifier, athleticsModifer) {
   const form = {
     type: FORM_DINOSAUR,
     armorClass: 18 + level,
-    tempHitPoints: 5,
+    tempHitPoints: 15,
     senses: {
       lowLight: true,
       impreciseScent: 30
     },
-    athletics: 9,
+    athletics: getAthleticsModifier(athleticsModifer, 18),
     attackModifier: getAttackModifier(attackModifier, 16),
     damageBonus: 9,
     reach: 5,
@@ -39,7 +39,7 @@ function scaleDinosaurForm (baseForm, level, attackModifier) {
       form.attackModifier = getAttackModifier(attackModifier, 25)
       form.damageBonus = 15
       form.diceDamage *= 2
-      form.athletics = 25
+      form.athletics = getAthleticsModifier(athleticsModifer, 25)
       if (form.agileDiceDamage) {
         form.agileDiceDamage *= 2
       }
@@ -51,7 +51,7 @@ function scaleDinosaurForm (baseForm, level, attackModifier) {
       form.attackModifier = getAttackModifier(attackModifier, 18)
       form.damageBonus = 6
       form.diceDamage *= 2
-      form.athletics = 21
+      form.athletics = getAthleticsModifier(athleticsModifer, 21)
       if (form.agileDiceDamage) {
         form.agileDiceDamage *= 2
       }
@@ -60,6 +60,6 @@ function scaleDinosaurForm (baseForm, level, attackModifier) {
   return form
 }
 
-export default function scaleDinosaurForms (level, attackModifier) {
-  return baseDinosaurForms.map(form => scaleDinosaurForm(form, level, attackModifier))
+export default function scaleDinosaurForms (level, attackModifier, athleticsModifer) {
+  return baseDinosaurForms.map(form => scaleDinosaurForm(form, level, attackModifier, athleticsModifer))
 }

@@ -10,6 +10,8 @@ const columns = [
   { field: 'damage', headerName: 'Damage', width: 130, type: 'number',
     valueGetter: (_, row) => row.diceDamage + row.damageBonus },
   { field: 'armorClass', headerName: 'Armor Class', width: 130, type: 'number' },
+  { field: 'athletics', headerName: 'Athletics Modifier', width: 130, type: 'number' },
+  { field: 'tempHitPoints', headerName: 'Temp Hit Points', width: 130, type: 'number' },
 ];
 
 const minLevel = 11
