@@ -2,16 +2,38 @@ import { FORM_DINOSAUR, SIZE_GARGANTUAN, SIZE_HUGE } from "./constants"
 import { getAttackModifier, getAthleticsModifier } from "./utils"
 
 const baseDinosaurForms = [{
+  id: 'Ankylosaurus',
+  speed: 25,
+  reach: 10,
+  diceDamage: 7,
+}, {
+  id: 'Brontosaurus',
+  speed: 25,
+  reach: 15,
+  diceDamage: 7,
+}, {
+  id: 'Deinonychus',
+  speed: 40,
+  diceDamage: 7,
+  agileDiceDamage: 7,
+}, {
   id: 'Stegosaurus',
+  speed: 30,
+  reach: 10,
+  diceDamage: 9,
+}, {
+  id: 'Triceratops',
   speed: 30,
   diceDamage: 9,
   agileDiceDamage: 7,
+  criticalDamage: 7,
 }, {
   id: 'Tyrannosaurus',
   speed: 30,
   reach: 10,
   diceDamage: 6.5,
   agileDiceDamage: 5.5,
+  criticalDamage: 6.5,
 }]
 
 function scaleDinosaurForm (baseForm, level, attackModifier, athleticsModifer) {
@@ -34,7 +56,7 @@ function scaleDinosaurForm (baseForm, level, attackModifier, athleticsModifer) {
     case level >= 13:
       form.size = SIZE_GARGANTUAN
       form.reach = form.Reach >= 15 ? 25 : 20
-      form.tempHitPoints = 15
+      form.tempHitPoints = 25
       form.armorClass = 21 + level
       form.attackModifier = getAttackModifier(attackModifier, 25)
       form.damageBonus = 15

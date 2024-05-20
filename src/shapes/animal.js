@@ -12,10 +12,39 @@ const baseAnimalForms = [{
   diceDamage: 9,
   agileDiceDamage: 4.5,
 }, {
+  id: 'Bull',
+  speed: 30,
+  diceDamage: 9,
+}, {
+  id: 'Canine',
+  speed: 40,
+  diceDamage: 9,
+}, {
   id: 'Cat',
   speed: 40,
   diceDamage: 7,
   agileDiceDamage: 5.5,
+}, {
+  id: 'Deer',
+  speed: 50,
+  diceDamage: 7,
+}, {
+  id: 'Frog',
+  speed: 25,
+  swim: 25,
+  reach: 15,
+  diceDamage: 7,
+  agileDiceDamage: 5,
+}, {
+  id: 'Shark',
+  speed: 0,
+  swim: 35,
+  diceDamage: 9,
+}, {
+  id: 'Snake',
+  speed: 20,
+  climb: 20,
+  diceDamage: 8.5,
 }]
 
 function scaleAnimalForm (baseForm, level, attackModifier, athleticsModifer) {

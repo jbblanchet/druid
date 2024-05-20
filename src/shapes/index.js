@@ -1,5 +1,6 @@
 import scaleDinosaurForms from "./dinosaur"
 import scaleAnimalForms from "./animal"
+import scaleAerialForms from "./aerial"
 import scaleDragonForm from "./dragon"
 
 function getBaseAttackModifiers (level) {
@@ -36,6 +37,7 @@ export default function listForms (level) {
 
   return [
     ...scaleAnimalForms(level, attackModifier, athleticsModifier),
+    ...scaleAerialForms(level, attackModifier, athleticsModifier),
     ...scaleDinosaurForms(level, attackModifier, athleticsModifier),
     scaleDragonForm(level, attackModifier, athleticsModifier),
   ]

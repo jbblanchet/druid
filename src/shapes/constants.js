@@ -1,6 +1,8 @@
 export const FORM_ANIMAL = 'animal'
+export const FORM_AERIAL = 'aerial'
 export const FORM_DINOSAUR = 'dinosaur'
 export const FORM_DRAGON = 'dragon'
+export const SIZE_MEDIUM = 'medium'
 export const SIZE_LARGE = 'large'
 export const SIZE_HUGE = 'huge'
 export const SIZE_GARGANTUAN = 'gargantuan'
