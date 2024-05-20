@@ -36,7 +36,7 @@ const baseDinosaurForms = [{
   criticalDamage: 6.5,
 }]
 
-function scaleDinosaurForm (baseForm, level, attackModifier, athleticsModifer) {
+function scaleDinosaurForm (baseForm, level) {
   const form = {
     type: FORM_DINOSAUR,
     armorClass: 18 + level,
@@ -45,8 +45,8 @@ function scaleDinosaurForm (baseForm, level, attackModifier, athleticsModifer) {
       lowLight: true,
       impreciseScent: 30
     },
-    athletics: getAthleticsModifier(athleticsModifer, 18),
-    attackModifier: getAttackModifier(attackModifier, 16),
+    athletics: getAthleticsModifier(level, 18),
+    attackModifier: getAttackModifier(level, 16),
     damageBonus: 9,
     reach: 5,
     ...baseForm
@@ -58,10 +58,10 @@ function scaleDinosaurForm (baseForm, level, attackModifier, athleticsModifer) {
       form.reach = form.Reach >= 15 ? 25 : 20
       form.tempHitPoints = 25
       form.armorClass = 21 + level
-      form.attackModifier = getAttackModifier(attackModifier, 25)
+      form.attackModifier = getAttackModifier(level, 25)
       form.damageBonus = 15
       form.diceDamage *= 2
-      form.athletics = getAthleticsModifier(athleticsModifer, 25)
+      form.athletics = getAthleticsModifier(level, 25)
       if (form.agileDiceDamage) {
         form.agileDiceDamage *= 2
       }
@@ -70,10 +70,10 @@ function scaleDinosaurForm (baseForm, level, attackModifier, athleticsModifer) {
       form.size = SIZE_HUGE
       form.reach = form.Reach >= 15 ? 20 : 15
       form.tempHitPoints = 20
-      form.attackModifier = getAttackModifier(attackModifier, 18)
+      form.attackModifier = getAttackModifier(level, 18)
       form.damageBonus = 6
       form.diceDamage *= 2
-      form.athletics = getAthleticsModifier(athleticsModifer, 21)
+      form.athletics = getAthleticsModifier(level, 21)
       if (form.agileDiceDamage) {
         form.agileDiceDamage *= 2
       }
@@ -82,6 +82,6 @@ function scaleDinosaurForm (baseForm, level, attackModifier, athleticsModifer) {
   return form
 }
 
-export default function scaleDinosaurForms (level, attackModifier, athleticsModifer) {
-  return baseDinosaurForms.map(form => scaleDinosaurForm(form, level, attackModifier, athleticsModifer))
+export default function scaleDinosaurForms (level) {
+  return baseDinosaurForms.map(form => scaleDinosaurForm(form, level))
 }

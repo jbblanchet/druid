@@ -1,5 +1,5 @@
 import { FORM_AERIAL, SIZE_MEDIUM, SIZE_HUGE, SIZE_LARGE } from "./constants"
-import { getDexAttackModifier } from "./utils"
+import { getAthleticsModifier, getDexAttackModifier } from "./utils"
 
 const baseAerialForms = [{
   id: 'Bat',
@@ -31,7 +31,7 @@ const baseAerialForms = [{
   diceDamage: 11.5,
 }]
 
-function scaleAerialForm (baseForm, level, attackModifier, athleticsModifer) {
+function scaleAerialForm (baseForm, level) {
   const form = {
     type: FORM_AERIAL,
     size: SIZE_MEDIUM,
@@ -41,8 +41,8 @@ function scaleAerialForm (baseForm, level, attackModifier, athleticsModifer) {
       lowLight: true,
       ...(baseForm.senses || {}),
     },
-    attackModifier: getDexAttackModifier(attackModifier, 16),
-    athletics: athleticsModifer,
+    attackModifier: getDexAttackModifier(level, 16),
+    athletics: getAthleticsModifier(level, 0),
     damageBonus: 5,
     reach: 5,
     ...baseForm,
@@ -55,7 +55,7 @@ function scaleAerialForm (baseForm, level, attackModifier, athleticsModifer) {
       form.reach = 10
       form.armorClass = 21 + level
       form.tempHitPoints = 15
-      form.attackModifier = getDexAttackModifier(attackModifier, 21)
+      form.attackModifier = getDexAttackModifier(level, 21)
       form.damageBonus = 4
       form.diceDamage *= 2
       if (form.agileDiceDamage) {
@@ -66,7 +66,7 @@ function scaleAerialForm (baseForm, level, attackModifier, athleticsModifer) {
       form.size = SIZE_LARGE
       form.fly += 10
       form.tempHitPoints = 10
-      form.attackModifier = getDexAttackModifier(attackModifier, 18)
+      form.attackModifier = getDexAttackModifier(level, 18)
       form.damageBonus = 8
       break;
   }
@@ -74,6 +74,6 @@ function scaleAerialForm (baseForm, level, attackModifier, athleticsModifer) {
   return form
 }
 
-export default function scaleAerialForms (level, attackModifier, athleticsModifer) {
-  return baseAerialForms.map(form => scaleAerialForm(form, level, attackModifier, athleticsModifer))
+export default function scaleAerialForms (level) {
+  return baseAerialForms.map(form => scaleAerialForm(form, level))
 }

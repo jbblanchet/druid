@@ -47,7 +47,7 @@ const baseAnimalForms = [{
   diceDamage: 8.5,
 }]
 
-function scaleAnimalForm (baseForm, level, attackModifier, athleticsModifer) {
+function scaleAnimalForm (baseForm, level) {
   const form = {
     type: FORM_ANIMAL,
     armorClass: 16 + level,
@@ -56,8 +56,8 @@ function scaleAnimalForm (baseForm, level, attackModifier, athleticsModifer) {
       lowLight: true,
       impreciseScent: 30
     },
-    athletics: getAthleticsModifier(athleticsModifer, 9),
-    attackModifier: getAttackModifier(attackModifier, 9),
+    athletics: getAthleticsModifier(level, 9),
+    attackModifier: getAttackModifier(level, 9),
     damageBonus: 1,
     reach: 5,
     ...baseForm,
@@ -69,18 +69,18 @@ function scaleAnimalForm (baseForm, level, attackModifier, athleticsModifer) {
       form.reach = 15
       form.tempHitPoints = 20
       form.armorClass = 18 + level
-      form.attackModifier = getAttackModifier(attackModifier, 18)
+      form.attackModifier = getAttackModifier(level, 18)
       form.damageBonus = 7
       form.diceDamage *= 2
       if (form.agileDiceDamage) {
         form.agileDiceDamage *= 2
       }
-      form.athletics = getAthleticsModifier(athleticsModifer, 20)
+      form.athletics = getAthleticsModifier(level, 20)
   }
 
   return form
 }
 
-export default function scaleAnimalForms (level, attackModifier, athleticsModifer) {
-  return baseAnimalForms.map(form => scaleAnimalForm(form, level, attackModifier, athleticsModifer))
+export default function scaleAnimalForms (level) {
+  return baseAnimalForms.map(form => scaleAnimalForm(form, level))
 }
