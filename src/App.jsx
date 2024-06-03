@@ -12,6 +12,10 @@ const columns = [
   { field: 'armorClass', headerName: 'Armor Class', width: 130, type: 'number' },
   { field: 'athletics', headerName: 'Athletics Modifier', width: 130, type: 'number' },
   { field: 'tempHitPoints', headerName: 'Temp Hit Points', width: 130, type: 'number' },
+  { field: 'speed', headerName: 'Land Speed', width: 130, type: 'number' },
+  { field: 'fly', headerName: 'Fly Speed', width: 130, type: 'number' },
+  { field: 'swim', headerName: 'Swim Speed', width: 130, type: 'number' },
+  { field: 'burrow', headerName: 'Burrow Speed', width: 130, type: 'number' },
 ];
 
 const minLevel = 11

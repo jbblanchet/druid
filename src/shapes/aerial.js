@@ -24,11 +24,6 @@ const baseAerialForms = [{
     impreciseScent: 30,
   },
   diceDamage: 10.5,
-}, {
-  id: 'Wasp',
-  speed: 20,
-  fly: 40,
-  diceDamage: 11.5,
 }]
 
 function scaleAerialForm (baseForm, level) {
